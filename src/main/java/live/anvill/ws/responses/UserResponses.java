@@ -1,17 +1,21 @@
 package live.anvill.ws.responses;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserResponses {
-    private String userid;
+    private String userId;
     private String firstName;
     private String lastName;
     private String email;
+    private List <AddressResponse> addresses;
 
-    public String getUserid() {
-        return userid;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -36,5 +40,13 @@ public class UserResponses {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<AddressResponse> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<AddressResponse> addresses) {
+        this.addresses = addresses;
     }
 }

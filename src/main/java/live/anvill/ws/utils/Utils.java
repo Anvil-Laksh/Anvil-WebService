@@ -15,6 +15,10 @@ public class Utils {
         return generatedString(length);
     }
 
+    public String addressId(int length){
+        return generatedString(length);
+    }
+
     private String generatedString(int length) {
         StringBuilder returnVal= new StringBuilder(length);
 

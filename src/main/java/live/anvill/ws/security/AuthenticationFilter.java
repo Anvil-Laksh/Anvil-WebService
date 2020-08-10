@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import live.anvill.ws.SpringApplicationContext;
-import live.anvill.ws.entities.UserEntity;
 import live.anvill.ws.requests.UserLoginRequestModel;
 import live.anvill.ws.services.UserServices;
 import live.anvill.ws.sharedto.UserDto;
@@ -53,7 +52,7 @@ protected void successfulAuthentication(HttpServletRequest request, HttpServletR
         String token = Jwts.builder()
                 .setSubject(userName)
                 .setExpiration(new Date(System.currentTimeMillis()+SecurityConstants.EXPIRATION_TIME))
-                .signWith(SignatureAlgorithm.HS512,SecurityConstants.TOKEN_SECRET)
+                .signWith(SignatureAlgorithm.HS512,SecurityConstants.getTokenSecret())
                 .compact();
         UserServices userServices = (UserServices) SpringApplicationContext.getBean("userServiceImplmnt");
         UserDto userDto = userServices.getUser(userName);

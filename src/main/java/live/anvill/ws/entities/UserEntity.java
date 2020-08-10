@@ -1,10 +1,11 @@
 package live.anvill.ws.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import live.anvill.ws.sharedto.AddressDto;
+import org.hibernate.annotations.Cascade;
+
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity(name="users")
 public class UserEntity implements Serializable {
@@ -13,12 +14,13 @@ public class UserEntity implements Serializable {
     @Id
     @GeneratedValue
     private long id;
-    @Column(nullable=false, length = 25)
 
-    private String userId;
     @Column(nullable=false, length = 100)
+    private String userId;
 
+    @Column(nullable=false, length = 100)
     private String firstName;
+
     @Column(nullable=false, length = 25)
     private String lastName;
 
@@ -30,11 +32,21 @@ public class UserEntity implements Serializable {
     @Column(nullable=false, unique = true)
     private String email;
 
-    @Column(nullable=false)
     private String encryptedPassword;
 
-    @Column(nullable=false)
-    private Boolean emailVerificationStatus = false;
+    @Column(nullable=true, columnDefinition = "boolean default false")
+    private Boolean emailVerificationStatus ;
+
+    @OneToMany(mappedBy = "userDetails", cascade = CascadeType.ALL)
+    private List <AddressEntity> addresses;
+
+    public List<AddressEntity> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<AddressEntity> addresses) {
+        this.addresses = addresses;
+    }
 
     public static long getSerialVersionId() {
         return SerialVersionId;
