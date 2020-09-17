@@ -1,5 +1,7 @@
 package live.anvill.ws.services;
 
+import live.anvill.ws.responses.AddressResponse;
+import live.anvill.ws.sharedto.AddressDto;
 import live.anvill.ws.sharedto.UserDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 

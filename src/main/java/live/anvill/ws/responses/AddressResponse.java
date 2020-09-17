@@ -1,6 +1,9 @@
 package live.anvill.ws.responses;
 
-public class AddressResponse {
+
+import org.springframework.hateoas.RepresentationModel;
+
+public class AddressResponse extends RepresentationModel {
 
     private long addressId;
     private String city;
@@ -9,12 +12,12 @@ public class AddressResponse {
     private String postalCode;
     private String type;
 
-    public long addressId() {
+    public long getAddressId() {
         return addressId;
     }
 
-    public void setId(long id) {
-        this.addressId = id;
+    public void setAddressId(long addressId) {
+        this.addressId = addressId;
     }
 
     public String getCity() {

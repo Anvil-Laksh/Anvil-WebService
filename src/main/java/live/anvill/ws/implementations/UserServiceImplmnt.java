@@ -43,6 +43,7 @@ public class UserServiceImplmnt implements UserServices {
         AddressDto address =  userDto.getAddresses().get(i);
         address.setUserDetails(userDto);
         address.setAddressId(utils.addressId(25));
+        System.out.println(address.getAddressId());
         userDto.getAddresses().set(i,address);
     }
 
@@ -81,11 +82,9 @@ public class UserServiceImplmnt implements UserServices {
         UserDto returnVal = new UserDto();
         live.anvill.ws.entities.UserEntity userEntity = userRepository.findByUserId(userId);
         if(userEntity== null)throw new UserServiceException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
-        System.out.println("id found");
         userEntity.setFirstName(userDto.getFirstName());
         userEntity.setLastName(userDto.getLastName());
         live.anvill.ws.entities.UserEntity updatedDetails = userRepository.save(userEntity);
-        System.out.println("saved");
         BeanUtils.copyProperties(updatedDetails, returnVal);
         return returnVal;
     }
@@ -112,7 +111,6 @@ public class UserServiceImplmnt implements UserServices {
 
         return returnVal;
     }
-
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
